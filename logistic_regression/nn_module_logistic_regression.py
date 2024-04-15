@@ -15,6 +15,15 @@ model = nn.Sequential(
    nn.Sigmoid() # 출력은 시그모이드 함수를 거친다
 )
 
+# class로 구현
+class BinaryClassifier(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.linear = nn.Linear(2, 1)
+        self.sigmoid = nn.Sigmoid()
+    def forward(self, x):
+        return self.sigmoid(self.linear(x))
+
 # optimizer 설정
 optimizer = optim.SGD(model.parameters(), lr=1)
 
